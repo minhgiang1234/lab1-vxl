@@ -50,6 +50,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
 void clearAllClock();
+void setNumberOnClock(int num);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -94,74 +95,73 @@ enum LedStateOn ledOn = LED_0;
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  clearAllClock();
 	  switch(ledOn){
 		  case LED_0:
-			  GPIOA->ODR = 1 << 4;
+			  setNumberOnClock(0);
 
 			  ledOn = LED_1;
 		  	  break;
 
 		  case LED_1:
-			  GPIOA->ODR = 1 << 5;
+			  setNumberOnClock(1);
 
 			  ledOn = LED_2;
 		  	  break;
 
 		  case LED_2:
-			  GPIOA->ODR = 1 << 6;
+			  setNumberOnClock(2);
 
 			  ledOn = LED_3;
 		  	  break;
 		  case LED_3:
-			  GPIOA->ODR = 1 << 7;
+			  setNumberOnClock(3);
 
 			  ledOn = LED_4;
 		  	  break;
 
 		  case LED_4:
-			  GPIOA->ODR = 1 << 8;
+			  setNumberOnClock(4);
 
 			  ledOn = LED_5;
 		  	  break;
 		  case LED_5:
-			  GPIOA->ODR = 1 << 9;
+			  setNumberOnClock(5);
 
 			  ledOn = LED_6;
 		  	  break;
 
 		  case LED_6:
-			  GPIOA->ODR = 1 << 10;
+			  setNumberOnClock(6);
 
 			  ledOn = LED_7;
 		  	  break;
 		  case LED_7:
-			  GPIOA->ODR = 1 << 11;
+			  setNumberOnClock(7);
 
 			  ledOn = LED_8;
 		  	  break;
 		  case LED_8:
-			  GPIOA->ODR = 1 << 12;
+			  setNumberOnClock(8);
 
 			  ledOn = LED_9;
 		  	  break;
 		  case LED_9:
-			  GPIOA->ODR = 1 << 13;
+			  setNumberOnClock(9);
 
 			  ledOn = LED_10;
 		  	  break;
 		  case LED_10:
-			  GPIOA->ODR = 1 << 14;
+			  setNumberOnClock(10);
 
 			  ledOn = LED_11;
 		  	  break;
 		  case LED_11:
-			  GPIOA->ODR = 1 << 15;
+			  setNumberOnClock(11);
 
 			  ledOn = LED_0;
 		  	  break;
 	  }
-
-
 
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
@@ -240,6 +240,10 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void clearAllClock(){
 	GPIOA->ODR = 0x00;
+}
+
+void setNumberOnClock(int num){
+	GPIOA->ODR |= 1 << (4 + num);
 }
 
 /* USER CODE END 4 */
