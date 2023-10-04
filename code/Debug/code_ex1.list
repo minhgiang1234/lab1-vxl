@@ -27,9 +27,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000302c  00000000  00000000  00020035  2**0
+ 12 .debug_info   0000302d  00000000  00000000  00020035  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00000e92  00000000  00000000  00023061  2**0
+ 13 .debug_abbrev 00000e92  00000000  00000000  00023062  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  14 .debug_aranges 000003d8  00000000  00000000  00023ef8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -274,12 +274,13 @@ enum LedStateOn ledOn = LED_0;
  800023e:	bf00      	nop
 	  }
 
-	  clearAllClock();
- 8000240:	f000 f878 	bl	8000334 <clearAllClock>
+
 
 	  HAL_Delay(1000);
- 8000244:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 8000248:	f000 f96e 	bl	8000528 <HAL_Delay>
+ 8000240:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 8000244:	f000 f970 	bl	8000528 <HAL_Delay>
+	  clearAllClock();
+ 8000248:	f000 f874 	bl	8000334 <clearAllClock>
 	  switch(ledOn){
  800024c:	e789      	b.n	8000162 <main+0x16>
  800024e:	bf00      	nop
