@@ -49,7 +49,7 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
-
+void clearAllClock();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -161,6 +161,8 @@ enum LedStateOn ledOn = LED_0;
 		  	  break;
 	  }
 
+	  clearAllClock();
+
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
@@ -236,7 +238,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void clearAllClock(){
+	GPIOA->ODR = 0x00;
+}
 
 /* USER CODE END 4 */
 
