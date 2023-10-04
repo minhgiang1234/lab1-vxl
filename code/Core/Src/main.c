@@ -88,81 +88,34 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-enum LedStateOn {LED_0=0 , LED_1=1, LED_2=2, LED_3=3, LED_4=4, LED_5=5, LED_6=6, LED_7=7, LED_8=8, LED_9=9, LED_10=10, LED_11=11};
-enum LedStateOn ledOn = LED_0;
+int counter_sec = 0;
+int counter_min = 0;
+int counter_hour = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  GPIOA->ODR = 0b1111111111110000;
-	  switch(ledOn){
-		  case LED_0:
-			  clearNumberOnClock(0);
 
-			  ledOn = LED_1;
-		  	  break;
+	  clearAllClock();
+	  setNumberOnClock(counter_sec/5);
+	  setNumberOnClock(counter_min/5);
+	  setNumberOnClock(counter_hour);
 
-		  case LED_1:
-			  clearNumberOnClock(1);
+	  counter_sec ++;
 
-			  ledOn = LED_2;
-		  	  break;
-
-		  case LED_2:
-			  clearNumberOnClock(2);
-
-			  ledOn = LED_3;
-		  	  break;
-		  case LED_3:
-			  clearNumberOnClock(3);
-
-			  ledOn = LED_4;
-		  	  break;
-
-		  case LED_4:
-			  clearNumberOnClock(4);
-
-			  ledOn = LED_5;
-		  	  break;
-		  case LED_5:
-			  clearNumberOnClock(5);
-
-			  ledOn = LED_6;
-		  	  break;
-
-		  case LED_6:
-			  clearNumberOnClock(6);
-
-			  ledOn = LED_7;
-		  	  break;
-		  case LED_7:
-			  clearNumberOnClock(7);
-
-			  ledOn = LED_8;
-		  	  break;
-		  case LED_8:
-			  clearNumberOnClock(8);
-
-			  ledOn = LED_9;
-		  	  break;
-		  case LED_9:
-			  clearNumberOnClock(9);
-
-			  ledOn = LED_10;
-		  	  break;
-		  case LED_10:
-			  clearNumberOnClock(10);
-
-			  ledOn = LED_11;
-		  	  break;
-		  case LED_11:
-			  clearNumberOnClock(11);
-
-			  ledOn = LED_0;
-		  	  break;
+	  if(counter_sec >= 60) {
+		  counter_sec = 0;
+		  counter_min ++;
 	  }
+
+	  if(counter_min >= 60) {
+		  counter_min = 0;
+		  counter_hour ++;
+	  }
+
+	  if(counter_hour >= 12) counter_hour = 0;
 
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
