@@ -160,9 +160,7 @@ enum LedStateOn ledOn = LED_0;
 			  ledOn = LED_0;
 		  	  break;
 	  }
-
-
-
+	  clearAllClock();
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
